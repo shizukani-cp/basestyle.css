@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>テーマ切替の例</title>
+  <link id="theme-stylesheet" rel="stylesheet" href="basestyle-light.css">
+  <script>
+    function setTheme(theme) {
+      const stylesheet = document.getElementById('theme-stylesheet');
+      if (theme === 'dark') {
+        stylesheet.href = 'basestyle-dark.css';
+      } else if (theme === 'light') {
+        stylesheet.href = 'basestyle-light.css';
+      } else {
+        const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)");
+        stylesheet.href = prefersDarkScheme.matches ? 'basestyle-dark.css' : 'basestyle-light.css';
+      }
+    }
+
+    window.onload = () => {
+      setTheme('system');
+    };
+  </script>
+</head>
+
+<body>
+  <div class="container">
+    <header>
+      <h1>テーマ切替の例</h1>
+      <nav>
+        <ul>
+          <li><a href="#" onclick="setTheme('light')">ライトテーマ</a></li>
+          <li><a href="#" onclick="setTheme('dark')">ダークテーマ</a></li>
+          <li><a href="#" onclick="setTheme('system')">システムテーマ</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <section>
+        <h2>テーマを選択してください</h2>
+        <p>上のリンクをクリックして、テーマを切り替えてください。</p>
+      </section>
+    </main>
+    <footer>
+      <p>フッターの内容</p>
+    </footer>
+  </div>
+</body>
+
+</html>
