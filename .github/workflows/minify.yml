@@ -17,17 +17,17 @@ jobs:
         with:
           add_suffix: true
           inclusions: |-
-            .basestyle-*.css
+            .basestyle-.+\.css
       - name: Pull latest changes
         run: |
-          git config --global user.name 'github-actions[bot]'
-          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git config --global user.name 'minifier[bot]'
+          git config --global user.email 'minifier[bot]@users.noreply.github.com'
           git pull --rebase
 
       - name: Commit and push changes
         run: |
           git add .
-          git commit -m "${{ env.commit_message }}"
+          git commit -m "minify"
           git push
         env:
           GITHUB_TOKEN: ${{ secrets.ACTIONS_DEPLOY_ACCESS_TOKEN }}
